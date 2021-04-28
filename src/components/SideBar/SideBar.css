@@ -1,0 +1,52 @@
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #03045e;
+  color: white;
+  padding: 20px;
+}
+
+.icon:hover {
+  transform: scale(1.1, 1.1);
+}
+.all-notes {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.delete-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.delete-icon:hover {
+  transform: scale(1.1, 1.1);
+}
+.footer {
+  display: flex;
+  justify-content: space-between !important;
+  margin-top: 1rem;
+  position: fixed;
+  bottom: 0;
+  padding: 20px;
+  background-color: #03045e;
+  color: white;
+  width: 19.75%;
+  align-items: center;
+}
+
+.signout-icon:hover {
+  transform: scale(1.1, 1.1);
+}
+.footer-text {
+  margin: 0;
+  font-size: 20px;
+}
+.note-title {
+  font-weight: bold;
+  font-size: 20px;
+}
+.divider {
+  margin: 0;
+  border-color: #495057;
+}
