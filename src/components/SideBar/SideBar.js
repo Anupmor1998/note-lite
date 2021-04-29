@@ -59,7 +59,7 @@ function SideBar({ newNote, adding, notes, selectNote, deleteNote }) {
         ))}
 
       <Box className="footer">
-        <Text className="footer-text">Made with 💕 by Anup</Text>
+        <Text className="footer-text">Made with 💖 by Anup</Text>
 
         <FaSignOutAlt
           onClick={signOut}
