@@ -25,15 +25,13 @@
   padding-left: 1rem;
 }
 .user-icon {
-  /* padding-left: 1rem; */
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  font-size: 20px;
-  /* border: solid 1px #000; */
+  font-size: 25px;
   background-color: #00b4d8;
   text-align: center;
-  line-height: 35px;
+  /* line-height: 10px; */
   margin: 1.5rem;
 }
 
