@@ -3,12 +3,12 @@ import "firebase/auth";
 import "firebase/firestore";
 
 var firebaseConfig = {
-  apiKey: "AIzaSyC-XXa-V_CbSY3kWHLcs2znyPGBS3x-Hs4",
-  authDomain: "evernote-clone-1be06.firebaseapp.com",
-  projectId: "evernote-clone-1be06",
-  storageBucket: "evernote-clone-1be06.appspot.com",
-  messagingSenderId: "459460505273",
-  appId: "1:459460505273:web:7c2dedcf2c261567d13568",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 };
 // Initialize Firebase
 if (!firebase.apps.length) {
