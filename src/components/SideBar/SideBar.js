@@ -21,7 +21,7 @@ function SideBar({ newNote, adding, notes, selectNote, deleteNote }) {
   return (
     <div>
       <Box className="sidebar-header">
-        <Heading size="md">Ever Note</Heading>
+        <Heading size="md">Note Lite</Heading>
 
         <AiFillFileAdd
           className="icon"

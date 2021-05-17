@@ -1,7 +1,7 @@
 .sidebar-header {
   display: flex;
   justify-content: space-between;
-  background-color: #03045e;
+  background-color: #001d3d;
   color: white;
   padding: 20px;
 }
@@ -29,7 +29,7 @@
   position: fixed;
   bottom: 0;
   padding: 20px;
-  background-color: #03045e;
+  background-color: #001d3d;
   color: white;
   width: 19.75%;
   align-items: center;

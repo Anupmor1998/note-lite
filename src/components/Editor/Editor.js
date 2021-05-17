@@ -1,8 +1,9 @@
 import { Box } from "@chakra-ui/layout";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Quill from "react-quill";
 import "./Editor.css";
 import { MdTitle } from "react-icons/md";
+import { AiOutlineFullscreen, AiOutlineFullscreenExit } from "react-icons/ai";
 
 const TOOLBAR_OPTIONS = [
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -19,6 +20,8 @@ const TOOLBAR_OPTIONS = [
 ];
 
 function Editor({ selectedNote, noteUpdate, user }) {
+  const ref = useRef(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const [body, setBody] = useState("");
   const [title, setTitle] = useState("");
   const [id, setId] = useState("");
@@ -45,8 +48,20 @@ function Editor({ selectedNote, noteUpdate, user }) {
     setTitle(val);
   };
 
+  const handleFullscreen = () => {
+    if (ref.current) {
+      if (document.fullscreenElement === null) {
+        ref.current.requestFullscreen();
+        setIsFullscreen(true);
+      } else {
+        document.exitFullscreen();
+        setIsFullscreen(false);
+      }
+    }
+  };
+
   return (
-    <Box className="editor-container">
+    <Box ref={ref} className="editor-container">
       <Box className="editor-header">
         <Box>
           <MdTitle className="title-icon" />
@@ -57,7 +72,7 @@ function Editor({ selectedNote, noteUpdate, user }) {
           onChange={(e) => updateTitle(e.target.value)}
         />
         {user ? (
-          <Box className="user-icon" color="white">
+          <Box className="user-icon" color="black">
             {user.email.charAt(0).toUpperCase()}
           </Box>
         ) : null}
@@ -69,6 +84,21 @@ function Editor({ selectedNote, noteUpdate, user }) {
         onChange={updateBody}
         modules={{ toolbar: TOOLBAR_OPTIONS }}
       />
+      <Box onClick={handleFullscreen}>
+        {isFullscreen ? (
+          <AiOutlineFullscreenExit
+            className="fullscreen-icon"
+            color="Black"
+            size="25px"
+          />
+        ) : (
+          <AiOutlineFullscreen
+            className="fullscreen-icon"
+            color="Black"
+            size="25px"
+          />
+        )}
+      </Box>
     </Box>
   );
 }

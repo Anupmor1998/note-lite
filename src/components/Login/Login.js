@@ -14,7 +14,7 @@ import {
   Container,
 } from "reactstrap";
 import GoogleLogin from "../GoogleLogin/GoogleLogin";
-import { Box, Divider, Heading } from "@chakra-ui/layout";
+import { Box, Divider, Heading, Link } from "@chakra-ui/layout";
 import { Text } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/react";
 
@@ -78,10 +78,35 @@ function Login() {
         })
       );
   };
+
+  const handlePassword = async () => {
+    await auth
+      .sendPasswordResetEmail(emailRef.current.value)
+      .then((res) =>
+        toast({
+          title: `Password Reset mail is sent to you`,
+          //   description: res.message,
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+          position: "top-right",
+        })
+      )
+      .catch((err) =>
+        toast({
+          title: err.message,
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+          position: "top-right",
+        })
+      );
+  };
+
   return (
     <Box className="login">
-      <Heading padding="1rem 0 0 1rem" size="2xl" color="#03045e">
-        Ever Note
+      <Heading padding="1rem 0 0 1rem" size="2xl" color="#fff">
+        Note Lite
       </Heading>
       <Container
         className="d-flex align-items-center justify-content-center "
@@ -134,6 +159,12 @@ function Login() {
 
               <GoogleLogin />
             </Form>
+            <Text marginTop="1rem" textAlign="center">
+              Forgot your password?{" "}
+              <Link color="teal.500" onClick={handlePassword}>
+                Click here
+              </Link>
+            </Text>
           </CardBody>
         </Card>
       </Container>

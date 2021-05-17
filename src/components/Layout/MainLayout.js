@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Editor from "../Editor/Editor";
 import SideBar from "../SideBar/SideBar";
 import "./MainLayout.css";
-import { firestore } from "../../firebaseConfig/firebaseConfig";
+import { firestore, timestamp } from "../../firebaseConfig/firebaseConfig";
 import { Image } from "@chakra-ui/image";
 import notes2 from "../../images/notes2.svg";
 
@@ -13,14 +13,17 @@ function MainLayout({ user }) {
   const [adding, setAdding] = useState(false);
 
   useEffect(() => {
-    firestore.collection(`${user?.uid}`).onSnapshot((snap) => {
-      const notes = snap.docs.map((doc) => {
-        const data = doc.data();
-        data["id"] = doc.id;
-        return data;
+    firestore
+      .collection(`${user?.uid}`)
+      .orderBy("createdAt", "desc")
+      .onSnapshot((snap) => {
+        const notes = snap.docs.map((doc) => {
+          const data = doc.data();
+          data["id"] = doc.id;
+          return data;
+        });
+        setNotes(notes);
       });
-      setNotes(notes);
-    });
   }, [user]);
 
   const selectNote = (note) => {
@@ -36,6 +39,7 @@ function MainLayout({ user }) {
     const newFromDB = await firestore.collection(`${user?.uid}`).add({
       title: note.title,
       body: note.body,
+      createdAt: timestamp,
     });
 
     const newId = newFromDB.id;
