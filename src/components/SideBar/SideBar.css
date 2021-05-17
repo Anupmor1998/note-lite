@@ -50,3 +50,18 @@
   margin: 0;
   border-color: #495057;
 }
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-thumb {
+  background: #274c77;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #70ccd9;
+}
+::-webkit-scrollbar-track {
+  background: #c0c0c0;
+  border-radius: 4px;
+}

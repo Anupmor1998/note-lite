@@ -7,6 +7,7 @@
   width: 20%;
   height: 100vh;
   background-color: #f6f1df;
+  overflow: auto;
 }
 .editor {
   flex: 4;
