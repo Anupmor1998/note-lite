@@ -103,6 +103,31 @@ function Login() {
       );
   };
 
+  const handleGuest = async (e) => {
+    e.preventDefault();
+
+    await auth
+      .signInWithEmailAndPassword("abc@gmail.com", "123456")
+      .then((res) =>
+        toast({
+          title: `Hi ${res.user.email}`,
+          description: res.message,
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+          position: "top-right",
+        })
+      )
+      .catch((error) =>
+        toast({
+          title: error.message,
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+        })
+      );
+  };
+
   return (
     <Box className="login">
       <Heading padding="1rem 0 0 1rem" size="2xl" color="#fff">
@@ -157,7 +182,12 @@ function Login() {
                 />
               </Box>
 
-              <GoogleLogin />
+              <Box className="btn-section">
+                <GoogleLogin />
+                <Button className="guest" onClick={handleGuest}>
+                  Guest Login
+                </Button>
+              </Box>
             </Form>
             <Text marginTop="1rem" textAlign="center">
               Forgot your password?{" "}

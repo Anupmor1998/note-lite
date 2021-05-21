@@ -5,3 +5,11 @@
   background-color: #001d3d;
   height: 100vh;
 }
+.btn-section {
+  display: flex;
+  justify-content: space-between;
+}
+.guest {
+  height: 50px;
+  margin-top: 1rem;
+}
