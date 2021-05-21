@@ -7,12 +7,14 @@ import Login from "./components/Login/Login";
 import { Image } from "@chakra-ui/image";
 import loader from "./images/loading.svg";
 import { ChakraProvider } from "@chakra-ui/react";
+import GithubRibbon from "./components/GitHubRibbon/GitHubRibbon";
 
 const App = () => {
   const [user, loading] = useAuthState(auth);
   if (loading) return <Image className="loader" src={loader} />;
   return (
     <ChakraProvider>
+      <GithubRibbon />
       {user ? <MainLayout user={user} /> : <Login />}
     </ChakraProvider>
   );
