@@ -45,7 +45,9 @@ function SideBar({ newNote, adding, notes, selectNote, deleteNote }) {
                 >
                   {note.title}
                 </Text>
-                <Text mt={4}>{removeHTMLTags(note.body).slice(0, 15)}...</Text>
+                <Text onClick={() => selectNote(note)} cursor='pointer' mt={4}>
+                  {removeHTMLTags(note.body).slice(0, 15)}...
+                </Text>
               </Box>
 
               <Box className='delete-icon'>

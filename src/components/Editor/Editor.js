@@ -36,7 +36,6 @@ function Editor({ selectedNote, noteUpdate, user }) {
     const timer = setTimeout(() => {
       noteUpdate(id, { title, body });
     }, 1500);
-
     return () => clearTimeout(timer);
   }, [noteUpdate, title, body, id]);
 
@@ -50,7 +49,6 @@ function Editor({ selectedNote, noteUpdate, user }) {
 
   const handleFullscreen = () => {
     if (screenRef.current) {
-      console.log(screenRef.current);
       if (document.fullscreenElement === null) {
         screenRef.current.requestFullscreen();
         setIsFullscreen(true);
