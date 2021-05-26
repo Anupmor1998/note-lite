@@ -1,11 +1,11 @@
-import { Box } from "@chakra-ui/layout";
-import React, { useEffect, useState } from "react";
-import Editor from "../Editor/Editor";
-import SideBar from "../SideBar/SideBar";
-import "./MainLayout.css";
-import { firestore, timestamp } from "../../firebaseConfig/firebaseConfig";
-import { Image } from "@chakra-ui/image";
-import notes2 from "../../images/notes2.svg";
+import { Box } from '@chakra-ui/layout';
+import React, { useEffect, useState } from 'react';
+import Editor from '../Editor/Editor';
+import SideBar from '../SideBar/SideBar';
+import './MainLayout.css';
+import { firestore, timestamp } from '../../firebaseConfig/firebaseConfig';
+import { Image } from '@chakra-ui/image';
+import notes2 from '../../images/notes2.svg';
 
 function MainLayout({ user }) {
   const [notes, setNotes] = useState(null);
@@ -15,11 +15,11 @@ function MainLayout({ user }) {
   useEffect(() => {
     firestore
       .collection(`${user?.uid}`)
-      .orderBy("createdAt", "desc")
+      .orderBy('createdAt', 'desc')
       .onSnapshot((snap) => {
         const notes = snap.docs.map((doc) => {
           const data = doc.data();
-          data["id"] = doc.id;
+          data['id'] = doc.id;
           return data;
         });
         setNotes(notes);
@@ -33,8 +33,8 @@ function MainLayout({ user }) {
   const newNote = async () => {
     setAdding(true);
     let note = {
-      title: "Untitled",
-      body: "",
+      title: 'Untitled',
+      body: '',
     };
     const newFromDB = await firestore.collection(`${user?.uid}`).add({
       title: note.title,
@@ -50,7 +50,7 @@ function MainLayout({ user }) {
 
   const deleteNote = async (note) => {
     setNotes(notes.filter((_note) => _note.id !== note.id));
-    if (selectedNote && selectedNote?.id === note.id) {
+    if (selectedNote?.id === note.id) {
       setSelectedNote(null);
     }
 
@@ -70,8 +70,8 @@ function MainLayout({ user }) {
   };
 
   return (
-    <Box className="main-layout">
-      <Box className="sidebar">
+    <Box className='main-layout'>
+      <Box className='sidebar'>
         <SideBar
           newNote={newNote}
           adding={adding}
@@ -80,7 +80,7 @@ function MainLayout({ user }) {
           deleteNote={deleteNote}
         />
       </Box>
-      <Box className="editor">
+      <Box className='editor'>
         {selectedNote ? (
           <Editor
             selectedNote={selectedNote}
@@ -88,8 +88,8 @@ function MainLayout({ user }) {
             user={user}
           />
         ) : (
-          <Box className="note-img">
-            <Image className="image" src={notes2} draggable={false} />
+          <Box className='note-img'>
+            <Image className='image' src={notes2} draggable={false} />
           </Box>
         )}
       </Box>

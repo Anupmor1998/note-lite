@@ -1,12 +1,12 @@
-import { Text } from "@chakra-ui/layout";
-import { Heading } from "@chakra-ui/layout";
-import { Box } from "@chakra-ui/layout";
-import React from "react";
-import { AiFillDelete, AiFillFileAdd } from "react-icons/ai";
-import { FaSignOutAlt } from "react-icons/fa";
-import { auth } from "../../firebaseConfig/firebaseConfig";
-import { removeHTMLTags } from "../../utils/helper";
-import "./SideBar.css";
+import { Text } from '@chakra-ui/layout';
+import { Heading } from '@chakra-ui/layout';
+import { Box } from '@chakra-ui/layout';
+import React from 'react';
+import { AiFillDelete, AiFillFileAdd } from 'react-icons/ai';
+import { FaSignOutAlt } from 'react-icons/fa';
+import { auth } from '../../firebaseConfig/firebaseConfig';
+import { removeHTMLTags } from '../../utils/helper';
+import './SideBar.css';
 
 function SideBar({ newNote, adding, notes, selectNote, deleteNote }) {
   const handleDeleteNote = (n) => {
@@ -20,26 +20,27 @@ function SideBar({ newNote, adding, notes, selectNote, deleteNote }) {
   };
   return (
     <div>
-      <Box className="sidebar-header">
-        <Heading size="md">Note Lite</Heading>
+      <Box className='sidebar-header'>
+        <Heading size='md'>Note Lite</Heading>
 
         <AiFillFileAdd
-          className="icon"
+          className='icon'
           onClick={newNote}
           disabled={adding}
-          color="white"
-          size="25px"
+          color='white'
+          size='25px'
         />
       </Box>
 
       {notes &&
         notes.map((note) => (
           <Box key={note.id}>
-            <Box className="all-notes">
+            <Box className='all-notes'>
               <Box>
                 <Text
-                  className="note-title"
-                  cursor="pointer"
+                  className='note-title'
+                  cursor='pointer'
+                  noOfLines={1}
                   onClick={() => selectNote(note)}
                 >
                   {note.title}
@@ -47,26 +48,26 @@ function SideBar({ newNote, adding, notes, selectNote, deleteNote }) {
                 <Text mt={4}>{removeHTMLTags(note.body).slice(0, 15)}...</Text>
               </Box>
 
-              <Box className="delete-icon">
+              <Box className='delete-icon'>
                 <AiFillDelete
-                  size="25px"
+                  size='25px'
                   onClick={() => handleDeleteNote(note)}
                 />
               </Box>
             </Box>
-            <hr className="divider" />
+            <hr className='divider' />
           </Box>
         ))}
 
-      <Box className="footer">
-        <Text className="footer-text">Made with 💖 by Anup</Text>
+      <Box className='footer'>
+        <Text className='footer-text'>Made with 💖 by Anup</Text>
 
         <FaSignOutAlt
           onClick={signOut}
           disabled={adding}
-          color="white"
-          size="25px"
-          className="signout-icon"
+          color='white'
+          size='25px'
+          className='signout-icon'
         />
       </Box>
     </div>
